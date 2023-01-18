@@ -10,7 +10,7 @@ public class Produto  {
 
   
 
-    public Produto(String nome, String descricao, double quantidade, double preco) {
+    public Produto(int codigo,String nome, String descricao, double quantidade, double preco) {
         codigo = codeCounter;
         codeCounter++;
         this.nome = nome;
