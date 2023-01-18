@@ -4,6 +4,7 @@ public class Menu{
     public static void main(String[] args) throws Exception {
        Scanner sc = new Scanner(System.in);
         Produtos produtos = new Produtos();
+        NotasFiscais notasFicais = new NotasFiscais();
         System.out.println("Menu");
         System.out.println("Digite o número da opção desejada");
         System.out.println("1 - Produtos");
@@ -18,6 +19,8 @@ public class Menu{
                 break;
             case 2:
                 System.out.println("Menu de Notas Fiscais");
+                MenuNotasFiscais menuNotasFiscais = new MenuNotasFiscais(produtos, notasFicais);
+                menuNotasFiscais.menu();
                 
 
                 break;

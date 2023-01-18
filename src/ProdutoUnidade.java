@@ -1,7 +1,7 @@
 
 public class ProdutoUnidade extends Produto {
-    public ProdutoUnidade(int codigo, String nome, String descricao, double quantidade, double preco){
-        super(codigo, nome, descricao, quantidade, preco);
+    public ProdutoUnidade(String nome, String descricao, double quantidade, double preco){
+        super(nome, descricao, quantidade, preco);
         try{
             int var1 = (int) quantidade;
         }catch(RuntimeException e){

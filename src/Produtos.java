@@ -15,7 +15,7 @@ public class Produtos  implements IProdutos{
 
     @Override
     public void removeProduto(int codigo) throws Exception {
-        produtos.remove(produtos.get(codigo));
+        produtos.remove(get(codigo));
     }
 
   /**
@@ -26,8 +26,12 @@ public class Produtos  implements IProdutos{
    */
     @Override
     public Produto getProduto(int codigo) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        try{
+            return get(codigo);
+        }
+        catch(Exception e){
+            throw new Exception("Produto não encontrado");
+        }
     }
 /**
  * This function updates the quantity of a product in the database
@@ -38,27 +42,52 @@ public class Produtos  implements IProdutos{
 
     @Override
     public void updateQuantidade(int codigo, double nova) throws Exception {
-       
+       try{
+              get(codigo).setQuantidade(nova);
+       }catch(Exception e){
+           throw new Exception("Erro ao atualizar quantidade");
+       }
         
     }
 
   // A method that updates the price of a product.
     @Override
     public void updatePreco(int codigo, double novo) throws Exception {
-        // TODO Auto-generated method stub
+      try {  get(codigo).setPreco(novo);}
+      catch(Exception e){
+          throw new Exception("Erro ao atualizar preço");
+      }
         
     }
 
     @Override
     public void addQuantidade(int codigo, double quantidade) throws Exception {
-        // TODO Auto-generated method stub
-        
+        try{
+              get(codigo).setQuantidade(produtos.get(codigo).getQuantidade()+quantidade);
+       }catch(Exception e){
+           throw new Exception("Erro ao adicionar quantidade");
+       }
     }
 
     @Override
     public void subQuantidade(int codigo, double quantidade) throws Exception {
-        // TODO Auto-generated method stub
-        
+        try{
+            if(get(codigo).getQuantidade()>=quantidade){
+                produtos.get(codigo).setQuantidade(produtos.get(codigo).getQuantidade()-quantidade);
+            }
+            else{
+                throw new Exception("Quantidade insuficiente");
+            }
+     }catch(Exception e){
+         throw new Exception("Erro ao subtrair quantidade");
+     }  
     }
-   
+    public Produto get(int cod){
+        for (Produto produto : produtos) {
+            if(produto.getCodigo()==cod){
+                return produto;
+            }
+        }
+        return null;
+    }
 }

@@ -3,25 +3,25 @@ public class MenuProdutos {
     private boolean sair = false;
 
     Produtos produtos = new Produtos();
-
+    
     public MenuProdutos(Produtos produtos){
         this.produtos = produtos;
     }
  
     Scanner sc = new Scanner(System.in);
-    public void menu(){
+    public void menu() throws Exception{
         do { 
         System.out.println("Menu de Produtos");
         System.out.println("Digite o número da opção desejada");
         System.out.println("1 - Cadastrar Produto");
-        int opcao = sc.nextInt();
         System.out.println("2 - Listar Produtos");
         System.out.println("3 - Editar Produto");
-        opcao = sc.nextInt();
-        System.out.println("4 - Excluir Produto");
+        System.out.println("4 - Excluir Produto");        
         System.out.println("5 - Voltar");
-        int voltar = sc.nextInt();
-        if(voltar == 5){
+        int opcao = sc.nextInt();
+        clearBuffer(sc);
+        
+        if(opcao == 5){
             sair = true;
         }
         switch(opcao){
@@ -58,9 +58,7 @@ public class MenuProdutos {
         double quantidade = sc.nextDouble();
         System.out.println("Digite o preço do produto");
         double preco = sc.nextDouble();
-        System.out.print("Digite o codigo do produto");
-        int codigo = sc.nextInt();
-        Produto produto = new Produto(codigo,nome, descricao, quantidade, preco);
+        Produto produto = new Produto(nome, descricao, quantidade, preco);
        
             produtos.addProduto(produto);
         } catch (Exception e) {
@@ -83,27 +81,61 @@ public class MenuProdutos {
 }
 
 
-    public void editarProduto(){
+    public void editarProduto() throws Exception{
       
         System.out.println("Digite o código do produto que deseja editar");
         int codigo = sc.nextInt();
-        try {
-            Produto produto = produtos.getProduto(codigo);
-            System.out.println("Digite o novo nome do produto");
-            String nome = sc.nextLine();
-            System.out.println("Digite a nova descrição do produto");
-            String descricao = sc.nextLine();
-            System.out.println("Digite a nova quantidade do produto");
-            double quantidade = sc.nextDouble();
-            System.out.println("Digite o novo preço do produto");
-            double preco = sc.nextDouble();
-            produto.setNome(nome);
-            produto.setDescricao(descricao);
-            produto.setQuantidade(quantidade);
-            produto.setPreco(preco);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-}
+        Produto produto = produtos.getProduto(codigo);
+        System.out.println("Digite o que deseja alterar:");
+        System.out.println("A - Nome; \nB - Descrição; \nC - Quantidade; \nD - Preço.");
+        switch(sc.next().charAt(0)){
+            case 'A': case 'a':
+                editaNome(produto);
+            break;
+            case 'B': case 'b':
+                editaDescricao(produto);
+            break;
+            case 'C': case 'c':
+                editaQuantidade(produto);
+            break;
+            case 'D': case 'd':
+                editaPreco(produto);
+            break;
+            default:
+                System.out.println("Opção inválida");
+            break;
+        }
+       
     }
+    public void editaNome(Produto produto){
+        System.out.println("Digite o novo nome do produto");
+        String nome = sc.nextLine();
+        produto.setNome(nome);
+    }
+
+
+    public void editaDescricao(Produto produto){
+        System.out.println("Digite a nova descrição do produto");
+        String descricao = sc.nextLine();
+        produto.setDescricao(descricao);
+    }
+
+    public void editaQuantidade(Produto produto){
+        System.out.println("Digite a nova quantidade do produto");
+            double quantidade = sc.nextDouble();
+        produto.setQuantidade(quantidade);
+    }
+    
+    public void editaPreco(Produto produto){
+        System.out.println("Digite o novo preço do produto");
+        double preco = sc.nextDouble();
+        produto.setPreco(preco);
+        
+    }
+    private static void clearBuffer(Scanner scanner) {
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
+        }
+    }
+    
 }
