@@ -6,35 +6,68 @@ public class Produto  {
     private String descricao;
     private double quantidade;
     private double preco;
+    public int codeCounter = 1;
 
   
 
-    public Produto(int codigo, String nome, String descricao) {
-        this.codigo = codigo;
+    public Produto(String nome, String descricao, double quantidade, double preco) {
+        codigo = codeCounter;
+        codeCounter++;
         this.nome = nome;
         this.descricao = descricao;
+        this.quantidade = quantidade;
+        this.preco = preco;
     }
 
+    /**
+     * This function returns the value of the variable codigo
+     * 
+     * @return The value of the variable codigo.
+     */
     public int getCodigo() {
         return codigo;
     }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
+/**
+ * This function returns the name of the person
+ * 
+ * @return The name of the person.
+ */
+/**
+ * This function returns the value of the variable nome
+ * 
+ * @return The name of the person.
+ */
 
     public String getNome() {
         return nome;
     }
 
+    /**
+     * // Java
+     * public void setNome(String nome) {
+     *         this.nome = nome;
+     *     }
+     * 
+     * @param nome name of the person
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
+/**
+ * This function returns the description of the object
+ * 
+ * @return The description of the product.
+ */
 
     public String getDescricao() {
         return descricao;
     }
 
+   /**
+    * This function sets the description of the object
+    * 
+    * @param descricao String
+    */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
@@ -68,5 +101,8 @@ public class Produto  {
     public void setPreco(double preco) {
         this.preco = preco;
     }
-
+    public String toString(){
+        String s = "Codigo: " + codigo + " Nome: " + nome + " Descrição: " + descricao + " Quantidade: " + quantidade + " Preço: " + preco;
+        return s;
+    }
 }

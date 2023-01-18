@@ -1,3 +1,7 @@
+/**
+ * This class implements the interface INotasFiscais and has the methods addNotaFiscal,
+ * removeNotaFiscal, getNotaFiscal, getTotal, addItem and removeItem
+ */
 import java.util.ArrayList;
 
 public class NotasFiscais implements INotasFiscais {
@@ -51,7 +55,6 @@ public class NotasFiscais implements INotasFiscais {
     public void removeItem(int codigo, Item item) throws Exception {
         getNotaFiscal(codigo).removeItem(item);        
     }
-    
 }
 
 

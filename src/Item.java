@@ -7,10 +7,14 @@ public class Item {
     public Item(Produto produto, double quantidadeVend){
         this.produto = produto;
         this.quantidadeVend = quantidadeVend;
+        produto.setQuantidade(produto.getQuantidade()-quantidadeVend);
     }
     //metodo para calcular item
     public double calculaItem() {
         return produto.getPreco() * quantidadeVend;
+    }
+    public void itemRemovido(){
+        produto.setQuantidade(produto.getQuantidade()+quantidadeVend);
     }
     public Produto getProduto() {
         return produto;
@@ -33,7 +37,9 @@ public class Item {
     }
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return toString();
+        
+        return "Item [produto=" + produto + ", quantidadeVend=" + quantidadeVend + ", preço por unidade = R$ " + produto.getPreco() + ", preço total = R$ " + calculaItem() + "]";
     }
+
+
 }

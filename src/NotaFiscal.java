@@ -30,6 +30,7 @@ public void addItem(Item item) {
     items.add(item);
 }
 public void removeItem(Item item) {
+    item.itemRemovido();
     items.remove(item);
 }
 public double calculaTotal() {
