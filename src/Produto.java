@@ -1,5 +1,7 @@
 import java.util.Date;
 
+import javax.management.RuntimeErrorException;
+
 public class Produto  {
     private int codigo;
     private String nome;
@@ -10,13 +12,23 @@ private static int codeCounter = 1;
 
   
 
-    public Produto(String nome, String descricao, double quantidade, double preco) {
+    public Produto(String nome, String descricao, double quantidade, double preco)  {
         codigo = codeCounter;
         codeCounter++;
         this.nome = nome;
         this.descricao = descricao;
         this.quantidade = quantidade;
-        this.preco = preco;
+        try{   
+          if(preco > 0)  {
+            this.preco = preco;
+          } else{
+            throw new Exception("Numero negativo, digite um numero positivo");
+          }
+        }
+            catch(Exception e){
+                throw new RuntimeException("Erro ao inserir o preço");
+            }
+     
         System.out.println("Produto criado com sucesso! \n"+toString()+"\n");
     }
 

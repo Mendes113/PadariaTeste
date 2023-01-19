@@ -1,6 +1,6 @@
 
 public class ProdutoUnidade extends Produto {
-    public ProdutoUnidade(String nome, String descricao, double quantidade, double preco){
+    public ProdutoUnidade(String nome, String descricao, double quantidade, double preco) {
         super(nome, descricao, quantidade, preco);
         try{
             int var1 = (int) quantidade;
@@ -14,5 +14,20 @@ public class ProdutoUnidade extends Produto {
         } catch (Exception e) {
           throw new RuntimeException("");
         }
+    }
+    public boolean testaInt(double quantidade){
+        try{
+            int var1 = (int) quantidade;
+            if (quantidade > 0) {
+                return true;
+            }else {
+                return false;
+            }
+        }catch(RuntimeException e){
+            return false;
+        }
+    }
+    public String toString(){
+        return "Produto Unidade: "+super.toString();
     }
 }
