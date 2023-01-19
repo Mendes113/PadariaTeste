@@ -6,7 +6,7 @@ public class Produto  {
     private String descricao;
     private double quantidade;
     private double preco;
-    public int codeCounter = 1;
+private static int codeCounter = 1;
 
   
 
