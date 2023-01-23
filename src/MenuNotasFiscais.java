@@ -13,7 +13,7 @@ public class MenuNotasFiscais {
         this.produtos = produtos;
         this.notasFiscais = notasFiscais;
     }
-    public void menu(){
+    public void menu() throws Exception{
 
         System.out.println("Menu de Notas Fiscais");
         System.out.println("Digite o número da opção desejada");
@@ -23,16 +23,16 @@ public class MenuNotasFiscais {
         System.out.println("4 - Excluir Nota Fiscal");
         switch(sc.nextInt()){
             case 1:
-                // cadastrarNotaFiscal();
+                 cadastrarNotaFiscal();
                 break;
                 case 2:
-                    // listarNotasFiscais();
+                    listarNotasFiscais();
                     break;
                     case 3:
-                        // editarNotaFiscal();
+                        editarNotaFiscal();
                         break;
                         case 4:
-                            // removerNotaFiscal();
+                            removerNotaFiscal();
                             break;
                             default:
                                 System.out.println("Opção inválida");
@@ -51,12 +51,22 @@ public class MenuNotasFiscais {
         try{
             Date data = new SimpleDateFormat("dd/MM/yyyy").parse(dateTest);
             notasFiscais.addNotaFiscal(new NotaFiscal(data));
-           
         }catch(ParseException e){
             System.out.println("Data incorreta");
         }
-        
-                
+        System.out.println("Deseja adicionar um item? (S/N)");
+        char rep = sc.next().charAt(0);
+        clearBuffer(sc);
+
+        if(rep == 'S' || rep == 's'){
+            System.out.println("Digite o código do produto");
+            int codigo = sc.nextInt();
+            System.out.println("Digite a quantidade");
+            int quantidade = sc.nextInt();
+            Item item = new Item(produtos.getProduto(codigo), quantidade);
+            notasFiscais.getNotaFiscalAtual().addItem(item);
+        }
+                  
     }
     public void listarNotasFiscais(){
                 
@@ -67,5 +77,9 @@ public class MenuNotasFiscais {
     public void removerNotaFiscal(){
                 
     }
-
+    private static void clearBuffer(Scanner scanner) {
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
+        }
+    }
 }

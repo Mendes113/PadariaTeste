@@ -20,7 +20,9 @@ public class NotasFiscais implements INotasFiscais {
         notasFiscais.remove(getNotaFiscal(codigo));
         
     }
-
+    public NotaFiscal getNotaFiscalAtual(){
+        return notasFiscais.get(notasFiscais.size()-1);
+    }
     @Override
     public NotaFiscal getNotaFiscal(int codigo) throws Exception {
        try {

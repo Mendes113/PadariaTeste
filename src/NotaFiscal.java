@@ -1,4 +1,7 @@
 import java.util.Date;
+
+import javax.xml.crypto.Data;
+
 import java.util.ArrayList;
 
 public class NotaFiscal  {
@@ -9,10 +12,19 @@ private static int codeCounter = 100;
 
 public NotaFiscal(Date data) {
 codigo = codeCounter;
-this.data = data;
+
 codeCounter++;
 items = null;
+try{   
+   this.data = data;
+  }
+      catch(Exception e){
+          throw new RuntimeException("Erro ao inserir a data");
+      }
+
+  System.out.println("Nota Fiscal criada  com sucesso! \n"+toString()+"\n");
 }
+
 
 public int getCodigo() {
     return codigo;
@@ -41,4 +53,25 @@ public double calculaTotal() {
     return total;
 
 }
+public int getCodeCounter() {
+    return codeCounter;
+}
+
+
+
+     @Override
+     public String toString() {
+        String str = " ";
+        if(items != null){
+            str = "Nota Fiscal [codigo=" + codigo + ", data=" + data + "";
+            for (Item item : items) {
+                str += item.toString();
+              
+            }
+        }else{
+            str = "Nota Fiscal [codigo=" + codigo + ", data=" + data + ", a nota fiscal ainda não possui itens]";
+        } 
+        
+         return str;
+     }
 }

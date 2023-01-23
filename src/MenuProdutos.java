@@ -3,7 +3,8 @@ public class MenuProdutos {
     private boolean sair = false;
 
     Produtos produtos = new Produtos();
-    
+ 
+    Menu menu = new Menu();
     public MenuProdutos(Produtos produtos){
         this.produtos = produtos;
     }
@@ -35,7 +36,7 @@ public class MenuProdutos {
                         removerProduto();
                         break;
                         case 5:
-                            sair = true;
+                         menu.menu();
                             break;
                 default:
                     System.out.println("Opção inválida");
